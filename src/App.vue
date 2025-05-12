@@ -2,6 +2,7 @@
 export default {
   data() {
     return {
+      buttonText: 'Купити',
       type: 'normal',
       height: '32px',
       radius: '2px',
@@ -9,6 +10,7 @@ export default {
       background: '#fff',
       borderColor: '#222',
       textColor: '#222',
+      fontSize: '14px',
     }
   },
 }
@@ -17,18 +19,21 @@ export default {
 <template>
   <div class="wrapper">
     <div class="button-warapper">
-      <button class="normal">Купити</button>
+      <button class="normal">{{buttonText}}</button>
     </div>
-
+    <div class="option-item">
+      <label>Текст кнопки</label><input type="text" v-model="buttonText" />
+    </div>
     <div class="options">
       <!-- height -->
+
       <div class="option-item">
         <label for="height">Висота</label>
         <select name="height" id="height" v-model="height">
-          <option value="24px">XS</option>
-          <option value="32px">S</option>
-          <option value="40px">M</option>
-          <option value="48px">L</option>
+          <option value="24px">XS (24px)</option>
+          <option value="32px">S (32px)</option>
+          <option value="40px">M (40px)</option>
+          <option value="48px">L (48px)</option>
         </select>
       </div>
       <!-- radius -->
@@ -36,20 +41,27 @@ export default {
         <label for="radius">Заокруглення</label>
         <select name="radius" id="radius" v-model="radius">
           <option value="0">None</option>
-          <option value="2px">S</option>
-          <option value="4px">M</option>
-          <option value="8px">L</option>
+          <option value="2px">XS (2px)</option>
+          <option value="4px">S (4px)</option>
+          <option value="8px">M (8px)</option>
+          <option value="12px">L (12px)</option>
+          <option value="999px">Pill</option>
         </select>
       </div>
       <!-- padding -->
       <div class="option-item">
         <label for="paddingX">Відступи</label>
         <select name="paddingX" id="paddingX" v-model="paddingX">
-          <option value="8px">S</option>
-          <option value="12px">M</option>
-          <option value="16px">L</option>
+          <option value="8px">S (8px)</option>
+          <option value="12px">M (12px)</option>
+          <option value="16px">L (16px)</option>
         </select>
       </div>
+
+      <div class="option-item">
+        <label>Розмір тексту</label><input type="text" v-model="fontSize" />
+      </div>
+
       <div class="option-item">
         <label>Колір фону</label><input type="text" v-model="background" />
       </div>
@@ -79,13 +91,14 @@ export default {
   height: 128px;
   width: 320px;
   border-radius: 24px;
+  margin-bottom: 24px;
 }
 
 .normal {
   outline: none;
   height: v-bind(height);
   padding: 0 v-bind(paddingX);
-  font-size: 1rem;
+  font-size: v-bind(fontSize);
   background: v-bind(background);
   font-weight: 500;
   border-radius: v-bind(radius);
@@ -119,49 +132,5 @@ input {
   width: 128px;
   border: 1px solid #ccc;
   border-radius: 8px;
-}
-
-.radius-0 {
-  border-radius: 0;
-}
-
-.radius-s {
-  border-radius: 2px;
-}
-
-.radius-m {
-  border-radius: 4px;
-}
-
-.radius-l {
-  border-radius: 8px;
-}
-
-.height-xs {
-  height: 24px;
-}
-
-.height-s {
-  height: 32px;
-}
-
-.height-m {
-  height: 40px;
-}
-
-.height-l {
-  height: 48px;
-}
-
-.paddingX-s {
-  padding: 0 8px;
-}
-
-.paddingX-m {
-  padding: 0 12px;
-}
-
-.paddingX-l {
-  padding: 0 16px;
 }
 </style>
