@@ -4,7 +4,21 @@ export default {
     return {
       buttonText: 'Купити',
       type: 'normal',
-      height: '32px',
+      heightValue: '40px',
+      fontWeight: '500',
+      height: [
+        '24px',
+        '28px',
+        '32px',
+        '36px',
+        '40px',
+        '44px',
+        '48px',
+        '52px',
+        '56px',
+        '60px',
+        '64px',
+      ],
       radius: '2px',
       paddingX: '8px',
       background: '#fff',
@@ -19,7 +33,7 @@ export default {
 <template>
   <div class="wrapper">
     <div class="button-warapper">
-      <button class="normal">{{buttonText}}</button>
+      <button class="normal">{{ buttonText }}</button>
     </div>
     <div class="option-item">
       <label>Текст кнопки</label><input type="text" v-model="buttonText" />
@@ -29,11 +43,8 @@ export default {
 
       <div class="option-item">
         <label for="height">Висота</label>
-        <select name="height" id="height" v-model="height">
-          <option value="24px">XS (24px)</option>
-          <option value="32px">S (32px)</option>
-          <option value="40px">M (40px)</option>
-          <option value="48px">L (48px)</option>
+        <select name="height" id="height" v-model="heightValue">
+          <option v-for="(value, idx) in height" :key="idx" :value="value">{{ value }}</option>
         </select>
       </div>
       <!-- radius -->
@@ -60,6 +71,14 @@ export default {
 
       <div class="option-item">
         <label>Розмір тексту</label><input type="text" v-model="fontSize" />
+      </div>
+
+      <div class="option-item">
+        <label for="fontWeight">Жирність</label>
+        <select name="fontWeight" id="fontWeight" v-model="fontWeight">
+          <option value="500">Нормальний</option>
+          <option value="600">Жирний</option>
+        </select>
       </div>
 
       <div class="option-item">
@@ -92,19 +111,21 @@ export default {
   width: 320px;
   border-radius: 24px;
   margin-bottom: 24px;
+  padding: 24px;
+  box-sizing: border-box;
 }
 
 .normal {
   outline: none;
-  height: v-bind(height);
-  padding: 0 v-bind(paddingX);
+  height: v-bind(heightValue);
   font-size: v-bind(fontSize);
   background: v-bind(background);
-  font-weight: 500;
+  font-weight: v-bind(fontWeight);
   border-radius: v-bind(radius);
   border: 1px solid #222;
   border-color: v-bind(borderColor);
   color: v-bind(textColor);
+  box-sizing: border-box;
 }
 .options {
   display: flex;
